@@ -1,5 +1,5 @@
 FROM python:alpine
-MAINTAINER jaybee jbdelon@linagora.com
+LABEL JayBeeDe dev@delon.cloud
 
 COPY entrypoint.sh /entrypoint.sh
 COPY supervisord.conf /etc/supervisord.conf
