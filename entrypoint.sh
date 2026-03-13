@@ -16,6 +16,7 @@ if [ "${maxVotesPerPoll}" != "40" ]; then
 	maxVotesPerPollArg="--max-votes-per-poll $maxVotesPerPoll"
 fi
 
+mkdir -p /data
 cmd="jawanndenn --port 80 --host 0.0.0.0 --database-sqlite3 /data/db.sql ${urlPrefixArg} ${maxPollsArg} ${maxVotesPerPollArg}"
 
 sed -i "s|^\s*command.*$|command=${cmd}|g" /etc/supervisord.conf
