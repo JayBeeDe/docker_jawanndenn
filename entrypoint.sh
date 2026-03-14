@@ -16,9 +16,10 @@ if [ "${maxVotesPerPoll}" != "40" ]; then
 	maxVotesPerPollArg="--max-votes-per-poll $maxVotesPerPoll"
 fi
 
+mkdir -p /data
 cmd="jawanndenn --port 80 --host 0.0.0.0 --database-sqlite3 /data/db.sql ${urlPrefixArg} ${maxPollsArg} ${maxVotesPerPollArg}"
 
 sed -i "s|^\s*command.*$|command=${cmd}|g" /etc/supervisord.conf
-echo "ALLOWED_HOSTS = '*'" >> /usr/local/lib/python3.9/site-packages/jawanndenn/settings.py
+echo "ALLOWED_HOSTS = ['*']" >> "/usr/local/lib/python${PYTHON_VERSION%.*}/site-packages/jawanndenn/settings.py"
 
 exec "$@"
